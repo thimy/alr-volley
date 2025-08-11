@@ -1,0 +1,36 @@
+header {
+  padding-block: var(--space-m);
+  text-align: center;
+}
+
+header .ribbon {
+  background-color: color-mix(in oklch, var(--color-primary), transparent 20%);
+}
+
+header .wrapper {
+  gap: var(--space-l) var(--space-m);
+}
+
+header img {
+  display: inline-block;
+  height: 100px;
+  max-height: 100%;
+  margin-block: -1rem;
+}
+
+header ul.cluster {
+  --gutter: var(--space-l);
+  border-radius: var(--radius-l);
+  color: var(--color-dark);
+  margin: 0;
+  padding: var(--space-xs) var(--space-m);
+  list-style-type: none;
+  gap: var(--space-xs) var(--space-m);
+}
+
+header a {
+  --color-primary: var(--color-light);
+  font-weight: var(--font-black);
+  text-decoration: none;
+  z-index: 0;
+}

@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="<%= site.locale %>">
+  <head>
+    <%= render "head", metadata: site.metadata, title: data.title %>
+  </head>
+  <body class="<%= data.layout %> <%= data.page_class %>">
+    <%= render Home::Hero.new do %>
+      <%= render Shared::Navbar.new(metadata: site.metadata, resource: resource) %>
+      <div class="wrapper tagline">
+        <h1>Bienvenue sur le site de l’ALR Volley-ball</h1>
+        <p></p>
+        <a class="button">Nous rejoindre</a>
+      </div>
+
+      <% @matches = collections.matches.resources.select{|match| match.data.date > Time.now} %>
+      <% if @matches.present? %>
+        <div class="wrapper">
+          <div class="upcoming-matches cluster">
+            <h2>Prochains matches</h2>
+            <% @matches.each do |match| %>
+              <div class="match">
+                <time><%= match.data.date.strftime("%d/%m/%Y") %></time>
+                <h3><%= "#{match.data.team} vs #{match.data.opponent}" %></h3>
+                <address><%= [match.data.location, match.data.city].compact.join(" à ") %></address>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+
+    <main>
+      <%= yield %>
+    </main>
+
+    <%= render "footer", metadata: site.metadata %>
+
+    <script>
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on("init", (user) => {
+          if (!user) {
+            window.netlifyIdentity.on("login", () => {
+              document.location.href = "/admin/";
+            });
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

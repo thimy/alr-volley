@@ -19,7 +19,7 @@
 
 url: "" # the base hostname & protocol for your site, e.g. https://example.com
 
-permalink: pretty
+permalink: simple
 template_engine: erb
 
 # Other options you might want to investigate:
@@ -32,3 +32,14 @@ template_engine: erb
 # timezone: America/Los_Angeles
 # pagination:
 #   enabled: true
+
+collections:
+  actualites:
+    name: Actualités
+    output: true
+    future: true
+  matches:
+    name: Matches
+    output: true
+    permalink: pretty
+    future: true

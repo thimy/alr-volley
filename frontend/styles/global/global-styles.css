@@ -1,0 +1,461 @@
+body {
+  background: var(--color-mint);
+  color: var(--color-dark);
+  display: flex;
+  flex-direction: column;
+  font-size: var(--size-step-0);
+  font-family: var(--font-base);
+  font-weight: 500;
+  line-height: var(--leading-standard);
+  font-size-adjust: from-font;
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  flex-grow: 1;
+}
+
+:is(h1, h2, h3, h4) {
+  line-height: var(--leading-fine);
+  text-wrap: balance;
+  font-family: var(--font-serif);
+}
+
+h1 {
+  font-size: var(--size-step-5);
+}
+
+h2 {
+  --underline-color: var(--color-primary);
+  font-size: var(--size-step-3);
+  align-items: center;
+  display: flex;
+  gap: var(--space-s);
+  justify-self: start;
+  position: relative;
+  scroll-margin-top: var(--space-xxs2);
+  width: 100%;
+  
+  &::after {
+    background: var(--underline-color);
+    border-radius: var(--radius-2);
+    content: "";
+    display: inline;
+    height: 0.1em;
+    flex-grow: 1;
+    position: relative;
+    top: 0.15em;
+  }
+
+  svg {
+    color: var(--color-primary);
+  }
+}
+
+h3 {
+  font-size: var(--size-step-1);
+  letter-spacing: 1;
+}
+
+h4, h5, h6 {
+  font-family: var(--font-base);
+  font-size: var(--size-step-00);
+  font-weight: 700;
+  letter-spacing: 0.1ch;
+  text-transform: uppercase;
+}
+
+small {
+  font-size: var(--size-step-0);
+}
+
+ins {
+  text-decoration: none;
+  background: var(--color-primary);
+  color: var(--color-dark);
+  padding-inline: 0.3em;
+}
+
+:is(code, kbd, samp) {
+  font-family: var(--font-mono);
+  padding: 0.2em 0.2em 0.05em 0.2em;
+  hyphens: none;
+  tab-size: 2;
+  text-align: left;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  box-decoration-break: clone;
+}
+
+address {
+  font-style: normal;
+}
+
+/* This is quite a new property, so we want code styles to at least, not be huge or tiny */
+@supports not (font-size-adjust: from-font) {
+  :is(code, kbd, samp) {
+    font-size: 0.8em;
+  }
+}
+
+pre:has(code) {
+  width: max-content;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+pre code {
+  border: none;
+  background: none;
+  padding: 0;
+}
+
+kbd {
+  border: 1px solid;
+  padding-block-end: 0.1em;
+}
+
+var {
+  font-style: normal;
+  font-weight: var(--font-medium);
+}
+
+q {
+  font-style: italic;
+}
+
+ul:not([class]) {
+  padding-inline-start: 1.7ch;
+  list-style-type: disc;
+}
+
+ul:not([class]) > li {
+  padding-inline-start: var(--space-xs);
+}
+
+ul ::marker {
+  font-size: 0.8lh;
+}
+
+ol ::marker {
+  font-size: 1em;
+  font-weight: var(--font-bold);
+}
+
+/* Lists with classes and roles will be out of standard flow, so remove the default spacing */
+[role='list'][class],
+[role='tablist'][class] {
+  margin-block: 0;
+  padding: 0;
+}
+
+dt + dd {
+  margin-block-start: var(--space-xs);
+}
+
+dd + dt {
+  margin-block-start: var(--space-s);
+}
+
+dt {
+  font-weight: 600;
+}
+
+dd {
+  margin-inline-start: 1.5ch;
+}
+
+dl {
+  font-size: var(--size-step-00);
+}
+
+dl > div {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+
+  dt + dd {
+    margin: 0;
+  }
+}
+
+.content {
+  font-size: var(--size-step-1);
+}
+
+blockquote {
+  margin-inline: 0;
+  color: var(--color-light);
+}
+
+blockquote footer {
+  margin-block-start: var(--space-s);
+  color: var(--color-primary);
+  font-size: var(--size-step-0);
+}
+
+blockquote q {
+  font-style: normal;
+}
+
+:is(video, iframe[src*='youtube'], iframe[src*='vimeo']) {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16/9;
+}
+
+img {
+  height: auto;
+  max-width: 100%;
+  display: block;
+}
+
+figcaption {
+  padding-block-start: 0.5em;
+  font-size: var(--size-step-0);
+  font-family: monospace;
+}
+
+caption {
+  caption-side: bottom;
+  margin-block-start: var(--space-s);
+}
+
+a[class] {
+  color: currentColor;
+  text-decoration: none;
+}
+
+.decorated {
+  position: relative;
+
+  &::after {
+    content: "";
+    display: block;
+    background-color: var(--color-primary);
+    height: 1ch;
+    width: 0;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transition: var(--transition-base);
+    z-index: -1;
+  }
+
+  &:hover::after {
+    width: 100%;
+  }
+}
+
+a:not([class]):hover {
+  text-underline-offset: 0.2lh;
+}
+
+:is(h1, h2, h3, h4) a:not([class]) {
+  color: var(--text-color);
+  text-decoration-thickness: 0.1ex;
+  text-underline-offset: 0.2ex;
+}
+
+:is(h1, h2, h3, h4) a:not([class]):hover {
+  text-underline-offset: 0.3ex;
+}
+
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus-color, currentColor);
+  outline-offset: var(--focus-offset, 0.2lh);
+}
+
+/* Firefox is the only browser that doesn't outline the whole element unless you make it display: inline-block. That in itself causes multiple flow issues so we can detect it, using its own vendor prefix and reduce focus offset
+*/
+@supports (-moz-appearance: none) {
+  :root {
+    --focus-offset: 0.08em;
+  }
+}
+
+:target {
+  scroll-margin-block: 5lh;
+}
+
+::selection {
+  color: var(--color-light);
+  background: var(--color-dark);
+}
+
+hr {
+  border: none;
+  border-block-start: var(--hr-stroke, var(--stroke));
+  margin-block: var(--flow-space, var(--space-xl));
+}
+
+svg:not([class]) {
+  width: auto;
+  height: 1lh;
+}
+
+svg {
+  flex-shrink: 0;
+}
+
+svg[role='img'][width][height] {
+  width: revert;
+  height: revert;
+  background: var(--color-light);
+  padding: var(--space-xs);
+}
+
+/* There's a .flow composition, but this prevents forms from having to have that applied where markup is harder to control in certain systems. It still uses the --flow-space variables though to make managing space easier */
+form:not(.inline) > * + * {
+  margin-top: var(--flow-space, 1rem);
+
+  label + * {
+    --flow-space: var(--space-xxs);
+  }
+
+  &:is([type=hidden] + *) {
+    margin-block-start: 0;
+  }
+}
+
+form > [type=hidden] + * {
+  margin-block-start: 0;
+}
+
+form .cluster {
+  --gutter: var(--space-s);
+}
+
+form .cluster:has(> [type=checkbox]) {
+  --gutter: var(--space-xxs);
+}
+
+:is(input, select, textarea) {
+  accent-color: var(--color-primary);
+}
+
+:is(input:not([class='button'], [type='checkbox'], [type='radio'], [type='color']), select, textarea) {
+  --flow-space: var(--space-xxs);
+  --input-font-size: var(--size-step-00);
+  padding: 0.5em 0.8em;
+  border-radius: var(--radius-s);
+  border: var(--stroke);
+  font-size: var(--input-font-size);
+  width: 100%;
+
+  &:is(.cluster > *) {
+    width: auto;
+  }
+
+  &::placeholder {
+    color: var(--color-mint);
+    opacity: 1;
+  }
+}
+
+:is(input, select, textarea):is(.double) {
+  width: 435px;
+}
+
+:is(select) {
+  max-width: 435px;
+}
+
+label {
+  line-height: var(--leading-fine);
+  font-size: var(--size-step-00);
+  font-weight: 600;
+}
+
+label::after {
+  content: '\A';
+  white-space: pre;
+}
+
+/* Usually label wraps checkbox and radio buttons, so we give ourselves more layout and text-flow control with flex */
+label:has(input) {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xxs);
+  font-weight: var(--font-normal);
+}
+
+label:has(input) + label:has(input) {
+  --flow-space: var(--space-s-m);
+}
+
+/* Slightly adjusts the vertical position of the check/radio */
+label:has(input) input {
+  transform: translateY(-0.1ex);
+}
+
+input:disabled {
+  background: var(--color-mint);
+}
+
+input:disabled,
+label input:disabled + * {
+  cursor: not-allowed;
+}
+
+fieldset {
+  border: var(--stroke);
+  padding: var(--space-s);
+}
+
+legend {
+  font-weight: var(--font-medium);
+  padding-inline: var(--space-xs);
+}
+
+summary {
+  font-weight: var(--font-bold);
+  cursor: pointer;
+}
+
+details[open] summary {
+  margin-block-end: var(--space-s);
+}
+
+.form-group {
+  display: flex;
+  gap: var(--space-s);
+  width: 100%;
+
+  .flow * + * {
+    --flow-space: var(--space-xxs);
+  }
+}
+
+main.region {
+  --region-space: var(--space-xl);
+}
+
+.strong {
+  font-weight: 600;
+}
+
+.form-wrapper {
+  margin-inline: auto;
+  width: 45ch;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.min-content {
+  width: min-content;
+}
+
+iframe {
+  aspect-ratio: 2/1;
+  width: 100%;
+}
