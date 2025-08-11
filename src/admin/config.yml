@@ -1,0 +1,29 @@
+backend:
+  name: git-gateway
+  branch: main
+local_backend: true # Enable the CMS locally
+media_folder: "src/documents"
+public_folder: "/documents"
+locale: "fr"
+
+collections:
+  - name: "actualites" # Used in routes, e.g., /admin/collections/blog
+    label: "Actualités" # Used in the UI
+    folder: "src/_posts/" # The path to the folder where the documents are stored
+    create: true # Allow users to create new documents in this collection
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
+    fields: # The fields for each document, usually in front matter
+      - {label: "Titre", name: "title", widget: "string"}
+      - {label: "Description", name: "body", widget: "markdown"}
+  - name: "matches" # Used in routes, e.g., /admin/collections/blog
+    label: "Match" # Used in the UI
+    label_singular: "Matches"
+    folder: "src/_matches/" # The path to the folder where the documents are stored
+    create: true # Allow users to create new documents in this collection
+    slug: "{{year}}-{{month}}-{{day}}-{{team}}" # Filename template, e.g., YYYY-MM-DD-title.md
+    fields: # The fields for each document, usually in front matter
+      - {label: "Équipe", name: "team", widget: "string", required: true}
+      - {label: "Équipe adverse", name: "opponent", widget: "string", required: true}
+      - {label: "Date", name: "date", widget: "datetime", required: true}
+      - {label: "Lieu", name: "location", widget: "string", default: "Salle Lucien Poulard"}
+      - {label: "Ville", name: "city", widget: "string", default: "Redon", required: true}

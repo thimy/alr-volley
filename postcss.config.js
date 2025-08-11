@@ -1,5 +1,7 @@
 module.exports = {
   plugins: {
+    'postcss-import': {},
+    'postcss-import-ext-glob': {},
     'postcss-mixins': {},
     'postcss-color-mod-function': {
       // Uncomment the following to import CSS variables for use in `color-mod`:

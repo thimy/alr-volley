@@ -4,9 +4,14 @@
     <%= render "head", metadata: site.metadata, title: data.title %>
   </head>
   <body class="<%= data.layout %> <%= data.page_class %>">
-    <%= render Shared::Navbar.new(metadata: site.metadata, resource: resource) %>
+    <%= render Home::Hero.new do %>
+      <%= render Shared::Navbar.new(metadata: site.metadata, resource: resource) %>
+      <div class="wrapper">
+        <h1><%= data.title %></h1>
+      </div>
+    <% end %>
 
-    <main>
+    <main class="flow">
       <%= yield %>
     </main>
 
